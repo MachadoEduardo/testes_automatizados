@@ -1,4 +1,4 @@
-import { montarOperacao } from './montarOperacao';
+import { montarOperacao } from '../montarOperacao';
 
 describe('montarOperacao function', () => {
   it('returns the operation name', () => {

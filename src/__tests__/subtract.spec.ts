@@ -1,4 +1,4 @@
-import { subtract } from './subtract';
+import { subtract } from '../subtract';
 
 describe('subtract function', () => {
   it('subtracts two positive numbers correctly', () => {
