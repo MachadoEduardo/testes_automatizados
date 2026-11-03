@@ -1,0 +1,18 @@
+npx.cmd jest divide --runInBand
+PASS src/__tests__/divide.spec.ts
+  divide function
+    √ returns five when dividing ten by two (3 ms)
+    √ throws an error when dividing by zero (8 ms)
+    √ throws an error containing the division by zero message
+    √ throws an error whose message matches the zero expression (1 ms)
+    √ throws an instance of Error when dividing by zero
+    √ returns a negative result when dividing a negative number
+    √ returns zero when dividing zero by five
+    √ returns a decimal result when dividing seven by two
+    √ does not throw an error when dividing ten by five (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       9 passed, 9 total
+Snapshots:   0 total
+Time:        2.428 s
+Ran all test suites matching /divide/i.

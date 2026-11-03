@@ -1,0 +1,13 @@
+npm.cmd test -- divide formatador --runInBand
+
+> atividade-jest@1.0.0 test
+> jest divide formatador --runInBand
+
+PASS src/__tests__/divide.spec.ts
+PASS src/__tests__/formatador.spec.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       13 passed, 13 total
+Snapshots:   0 total
+Time:        2.623 s
+Ran all test suites matching /divide|formatador/i.

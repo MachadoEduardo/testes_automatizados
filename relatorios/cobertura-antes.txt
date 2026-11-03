@@ -1,0 +1,30 @@
+npm.cmd test -- --coverage --runInBand --coverageDirectory=relatorios/cobertura-antes
+
+> atividade-jest@1.0.0 test
+> jest --coverage --runInBand --coverageDirectory=relatorios/cobertura-antes
+
+PASS src/__tests__/usuarioService.spec.ts
+PASS src/__tests__/divide.spec.ts
+PASS src/__tests__/api.spec.ts
+PASS src/__tests__/subtract.spec.ts
+PASS src/__tests__/montarOperacao.spec.ts
+PASS src/__tests__/formatador.spec.ts
+PASS src/__tests__/sum.spec.ts
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+-------------------|---------|----------|---------|---------|-------------------
+All files          |      96 |       50 |     100 |      96 |
+ app.ts            |     100 |      100 |     100 |     100 |
+ divide.ts         |     100 |      100 |     100 |     100 |
+ formatador.ts     |      80 |        0 |     100 |      80 | 5
+ montarOperacao.ts |     100 |      100 |     100 |     100 |
+ subtract.ts       |     100 |      100 |     100 |     100 |
+ sum.ts            |     100 |      100 |     100 |     100 |
+ usuarioService.ts |     100 |      100 |     100 |     100 |
+-------------------|---------|----------|---------|---------|-------------------
+
+Test Suites: 7 passed, 7 total
+Tests:       31 passed, 31 total
+Snapshots:   0 total
+Time:        5.966 s
+Ran all test suites.

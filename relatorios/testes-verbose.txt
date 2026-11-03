@@ -1,0 +1,59 @@
+npx.cmd jest --verbose --runInBand
+PASS src/__tests__/usuarioService.spec.ts
+  usuarioService
+    √ calls the repository and returns the user found (3 ms)
+    √ calls the repository with the requested user id
+    √ returns null when the repository does not find a user
+    √ calls the repository exactly once for a user search (1 ms)
+    √ returns the user resolved by an asynchronous repository
+
+PASS src/__tests__/api.spec.ts
+  API routes
+    √ returns status 200 and an ok body for GET /ping (14 ms)
+    √ returns JSON content for GET /ping (3 ms)
+    √ returns status 404 for a route that does not exist (3 ms)
+    √ returns status 404 for POST /ping (3 ms)
+
+PASS src/__tests__/sum.spec.ts
+  sum function
+    √ should add two numbers correctly
+
+PASS src/__tests__/subtract.spec.ts
+  subtract function
+    √ subtracts two positive numbers correctly
+    √ returns a negative result when the second number is greater
+    √ returns the first number when subtracting zero
+    √ subtracts two negative numbers correctly
+    √ subtracts two decimal numbers correctly
+
+PASS src/__tests__/divide.spec.ts
+  divide function
+    √ returns five when dividing ten by two (3 ms)
+    √ throws an error when dividing by zero (14 ms)
+    √ throws an error containing the division by zero message (1 ms)
+    √ throws an error whose message matches the zero expression
+    √ throws an instance of Error when dividing by zero (1 ms)
+    √ returns a negative result when dividing a negative number
+    √ returns zero when dividing zero by five
+    √ returns a decimal result when dividing seven by two
+    √ does not throw an error when dividing ten by five
+
+PASS src/__tests__/montarOperacao.spec.ts
+  montarOperacao function
+    √ returns the operation name
+    √ returns the operation data and result (1 ms)
+    √ includes the second number in the values
+    √ returns a defined operation object
+
+PASS src/__tests__/formatador.spec.ts
+  formatarNome function
+    √ capitalizes the first letter of a lowercase name
+    √ removes spaces from the beginning and end of a name
+    √ converts the remaining letters of an uppercase name to lowercase
+    √ returns an empty name without throwing an error
+
+Test Suites: 7 passed, 7 total
+Tests:       32 passed, 32 total
+Snapshots:   0 total
+Time:        3.507 s, estimated 4 s
+Ran all test suites.
