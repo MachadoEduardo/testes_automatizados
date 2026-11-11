@@ -1,0 +1,42 @@
+npm.cmd test -- criarUsuario.spec --runInBand
+
+
+> atividade-jest@1.0.0 test
+> jest criarUsuario.spec --runInBand
+
+FAIL src/__tests__/criarUsuario.spec.ts
+  Função criarUsuario
+    × deve retornar o objeto completo quando receber nome e idade (11 ms)
+    √ deve possuir a propriedade nome quando criar o usuário
+    √ deve ter idade 30 quando receber essa idade
+    √ deve conter nome e idade quando comparar apenas esses campos (1 ms)
+    √ deve ter um nome não vazio quando receber Maria
+
+  ● Função criarUsuario › deve retornar o objeto completo quando receber nome e idade
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 0
+    + Received  + 1
+
+      Object {
+    +   "id": "24d3a58d-798f-4b58-9f93-50dbc5ec6649",
+        "idade": 30,
+        "nome": "Maria",
+      }
+
+       8 |     const resultado = criarUsuario(nome, idade);
+       9 |
+    > 10 |     expect(resultado).toEqual({ nome: 'Maria', idade: 30 });
+         |                       ^
+      11 |   });
+      12 |
+      13 |   it('deve possuir a propriedade nome quando criar o usuário', () => {
+
+      at Object.<anonymous> (src/__tests__/criarUsuario.spec.ts:10:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 4 passed, 5 total
+Snapshots:   0 total
+Time:        3.442 s
+Ran all test suites matching /criarUsuario.spec/i.

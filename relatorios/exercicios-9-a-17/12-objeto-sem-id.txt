@@ -1,0 +1,19 @@
+npm.cmd test -- criarUsuario.spec --runInBand
+
+
+> atividade-jest@1.0.0 test
+> jest criarUsuario.spec --runInBand
+
+PASS src/__tests__/criarUsuario.spec.ts
+  Função criarUsuario
+    √ deve retornar o objeto completo quando receber nome e idade (9 ms)
+    √ deve possuir a propriedade nome quando criar o usuário (1 ms)
+    √ deve ter idade 30 quando receber essa idade (1 ms)
+    √ deve conter nome e idade quando comparar apenas esses campos (1 ms)
+    √ deve ter um nome não vazio quando receber Maria
+
+Test Suites: 1 passed, 1 total
+Tests:       5 passed, 5 total
+Snapshots:   0 total
+Time:        4.316 s
+Ran all test suites matching /criarUsuario.spec/i.
