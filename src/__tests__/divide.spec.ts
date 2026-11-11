@@ -1,7 +1,7 @@
 import { divide } from '../divide';
 
-describe('divide function', () => {
-  it('returns five when dividing ten by two', () => {
+describe('Função divide', () => {
+  it('deve retornar 5 quando dividir 10 por 2', () => {
     const a = 10;
     const b = 2;
 
@@ -10,7 +10,7 @@ describe('divide function', () => {
     expect(result).toBe(5);
   });
 
-  it('throws an error when dividing by zero', () => {
+  it('deve lançar um erro quando dividir por zero', () => {
     const a = 10;
     const b = 0;
 
@@ -19,7 +19,7 @@ describe('divide function', () => {
     expect(operation).toThrow();
   });
 
-  it('throws an error containing the division by zero message', () => {
+  it('deve lançar a mensagem de divisão por zero quando o divisor for zero', () => {
     const a = 10;
     const b = 0;
 
@@ -28,7 +28,7 @@ describe('divide function', () => {
     expect(operation).toThrow('divisão por zero');
   });
 
-  it('throws an error whose message matches the zero expression', () => {
+  it('deve incluir zero na mensagem quando comparar com uma expressão regular', () => {
     const a = 10;
     const b = 0;
 
@@ -37,7 +37,7 @@ describe('divide function', () => {
     expect(operation).toThrow(/zero/);
   });
 
-  it('throws an instance of Error when dividing by zero', () => {
+  it('deve lançar uma instância de Error quando dividir por zero', () => {
     const a = 10;
     const b = 0;
 
@@ -46,7 +46,7 @@ describe('divide function', () => {
     expect(operation).toThrow(Error);
   });
 
-  it('returns a negative result when dividing a negative number', () => {
+  it('deve retornar -5 quando dividir -10 por 2', () => {
     const a = -10;
     const b = 2;
 
@@ -55,7 +55,7 @@ describe('divide function', () => {
     expect(result).toBe(-5);
   });
 
-  it('returns zero when dividing zero by five', () => {
+  it('deve retornar 0 quando dividir 0 por 5', () => {
     const a = 0;
     const b = 5;
 
@@ -64,7 +64,7 @@ describe('divide function', () => {
     expect(result).toBe(0);
   });
 
-  it('returns a decimal result when dividing seven by two', () => {
+  it('deve retornar 3.5 quando dividir 7 por 2', () => {
     const a = 7;
     const b = 2;
 
@@ -73,7 +73,7 @@ describe('divide function', () => {
     expect(result).toBe(3.5);
   });
 
-  it('does not throw an error when dividing ten by five', () => {
+  it('deve concluir sem erro quando dividir 10 por 5', () => {
     const a = 10;
     const b = 5;
 

@@ -1,0 +1,51 @@
+npm.cmd test -- sum.spec --runInBand
+
+
+> atividade-jest@1.0.0 test
+> jest sum.spec --runInBand
+
+FAIL src/__tests__/sum.spec.ts
+  Função sum
+    × deve retornar 5 quando somar 2 e 3 (5 ms)
+    × deve retornar 0 quando somar -1 e 1 (1 ms)
+    √ deve retornar 0 quando somar 0 e 0
+
+  ● Função sum › deve retornar 5 quando somar 2 e 3
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 5
+    Received: -1
+
+       9 |     const resultado = sum(a, b);
+      10 |
+    > 11 |     expect(resultado).toBe(esperado);
+         |                       ^
+      12 |   });
+      13 | });
+      14 |
+
+      at src/__tests__/sum.spec.ts:11:23
+
+  ● Função sum › deve retornar 0 quando somar -1 e 1
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: -2
+
+       9 |     const resultado = sum(a, b);
+      10 |
+    > 11 |     expect(resultado).toBe(esperado);
+         |                       ^
+      12 |   });
+      13 | });
+      14 |
+
+      at src/__tests__/sum.spec.ts:11:23
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 1 passed, 3 total
+Snapshots:   0 total
+Time:        1.596 s, estimated 4 s
+Ran all test suites matching /sum.spec/i.

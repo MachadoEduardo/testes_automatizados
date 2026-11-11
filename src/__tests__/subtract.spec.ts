@@ -1,7 +1,16 @@
 import { subtract } from '../subtract';
 
-describe('subtract function', () => {
-  it('subtracts two positive numbers correctly', () => {
+describe('Função subtract', () => {
+  it('deve retornar 3 quando subtrair 2 de 5', () => {
+    const a = 5;
+    const b = 2;
+
+    const resultado = subtract(a, b);
+
+    expect(resultado).toBe(3);
+  });
+
+  it('deve retornar 6 quando subtrair 4 de 10', () => {
     const a = 10;
     const b = 4;
 
@@ -10,7 +19,7 @@ describe('subtract function', () => {
     expect(result).toBe(6);
   });
 
-  it('returns a negative result when the second number is greater', () => {
+  it('deve retornar um número negativo quando o segundo número for maior', () => {
     const a = 3;
     const b = 8;
 
@@ -19,7 +28,7 @@ describe('subtract function', () => {
     expect(result).toBe(-5);
   });
 
-  it('returns the first number when subtracting zero', () => {
+  it('deve manter o primeiro número quando subtrair zero', () => {
     const a = 7;
     const b = 0;
 
@@ -28,7 +37,7 @@ describe('subtract function', () => {
     expect(result).toBe(7);
   });
 
-  it('subtracts two negative numbers correctly', () => {
+  it('deve retornar -3 quando subtrair -2 de -5', () => {
     const a = -5;
     const b = -2;
 
@@ -37,7 +46,7 @@ describe('subtract function', () => {
     expect(result).toBe(-3);
   });
 
-  it('subtracts two decimal numbers correctly', () => {
+  it('deve retornar 3 quando subtrair 2.5 de 5.5', () => {
     const a = 5.5;
     const b = 2.5;
 

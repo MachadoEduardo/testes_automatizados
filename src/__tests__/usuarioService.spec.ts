@@ -1,11 +1,11 @@
 import { criarUsuarioService } from '../usuarioService';
 
-describe('usuarioService', () => {
+describe('Serviço de usuários', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it('calls the repository and returns the user found', () => {
+  it('deve consultar o repositório e retornar o usuário quando ele existir', () => {
     const usuario = { id: 1, nome: 'Maria', email: 'maria@exemplo.com' };
     const repositorio = {
       buscarPorId: jest.fn().mockReturnValue(usuario),
@@ -18,7 +18,7 @@ describe('usuarioService', () => {
     expect(resultado).toEqual(usuario);
   });
 
-  it('calls the repository with the requested user id', () => {
+  it('deve consultar o id correto quando buscar um usuário', () => {
     const usuario = { id: 2, nome: 'João', email: 'joao@exemplo.com' };
     const repositorio = {
       buscarPorId: jest.fn().mockReturnValue(usuario),
@@ -30,7 +30,7 @@ describe('usuarioService', () => {
     expect(repositorio.buscarPorId).toHaveBeenCalledWith(2);
   });
 
-  it('returns null when the repository does not find a user', () => {
+  it('deve retornar null quando o repositório não encontrar o usuário', () => {
     const repositorio = {
       buscarPorId: jest.fn().mockReturnValue(null),
     };
@@ -41,7 +41,7 @@ describe('usuarioService', () => {
     expect(resultado).toBeNull();
   });
 
-  it('calls the repository exactly once for a user search', () => {
+  it('deve consultar o repositório uma vez quando buscar um usuário', () => {
     const usuario = { id: 1, nome: 'Maria', email: 'maria@exemplo.com' };
     const repositorio = {
       buscarPorId: jest.fn().mockReturnValue(usuario),
@@ -53,7 +53,7 @@ describe('usuarioService', () => {
     expect(repositorio.buscarPorId).toHaveBeenCalledTimes(1);
   });
 
-  it('returns the user resolved by an asynchronous repository', async () => {
+  it('deve retornar o usuário quando o repositório resolver a promessa', async () => {
     const usuario = { id: 1, nome: 'Maria', email: 'maria@exemplo.com' };
     const repositorio = {
       buscarPorId: jest.fn().mockResolvedValue(usuario),

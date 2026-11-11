@@ -1,7 +1,7 @@
 import { montarOperacao } from '../montarOperacao';
 
-describe('montarOperacao function', () => {
-  it('returns the operation name', () => {
+describe('Função montarOperacao', () => {
+  it('deve identificar a subtração quando montar a operação', () => {
     const a = 10;
     const b = 4;
 
@@ -10,7 +10,7 @@ describe('montarOperacao function', () => {
     expect(operation.operacao).toBe('subtração');
   });
 
-  it('returns the operation data and result', () => {
+  it('deve retornar os dados e o resultado quando receber 10 e 4', () => {
     const a = 10;
     const b = 4;
 
@@ -23,7 +23,7 @@ describe('montarOperacao function', () => {
     });
   });
 
-  it('includes the second number in the values', () => {
+  it('deve incluir o segundo número nos valores quando montar a operação', () => {
     const a = 10;
     const b = 4;
 
@@ -32,7 +32,7 @@ describe('montarOperacao function', () => {
     expect(operation.valores).toContain(4);
   });
 
-  it('returns a defined operation object', () => {
+  it('deve retornar um objeto verdadeiro quando montar a operação', () => {
     const a = 10;
     const b = 4;
 

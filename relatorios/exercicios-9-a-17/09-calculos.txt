@@ -1,0 +1,14 @@
+npm.cmd test -- sum.spec subtract.spec --runInBand
+
+
+> atividade-jest@1.0.0 test
+> jest sum.spec subtract.spec --runInBand
+
+PASS src/__tests__/subtract.spec.ts
+PASS src/__tests__/sum.spec.ts
+
+Test Suites: 2 passed, 2 total
+Tests:       9 passed, 9 total
+Snapshots:   0 total
+Time:        4.583 s
+Ran all test suites matching /sum.spec|subtract.spec/i.

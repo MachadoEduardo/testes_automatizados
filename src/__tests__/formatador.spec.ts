@@ -1,7 +1,7 @@
 import { formatarNome } from '../formatador';
 
-describe('formatarNome function', () => {
-  it('capitalizes the first letter of a lowercase name', () => {
+describe('Função formatarNome', () => {
+  it('deve colocar a primeira letra em maiúscula quando receber maria', () => {
     const nome = 'maria';
 
     const resultado = formatarNome(nome);
@@ -9,7 +9,7 @@ describe('formatarNome function', () => {
     expect(resultado).toBe('Maria');
   });
 
-  it('removes spaces from the beginning and end of a name', () => {
+  it('deve remover espaços das pontas quando receber um nome com espaços', () => {
     const nome = ' joão ';
 
     const resultado = formatarNome(nome);
@@ -17,7 +17,7 @@ describe('formatarNome function', () => {
     expect(resultado).toBe('João');
   });
 
-  it('converts the remaining letters of an uppercase name to lowercase', () => {
+  it('deve manter somente a inicial maiúscula quando receber ANA', () => {
     const nome = 'ANA';
 
     const resultado = formatarNome(nome);
@@ -25,7 +25,7 @@ describe('formatarNome function', () => {
     expect(resultado).toBe('Ana');
   });
 
-  it('returns an empty name without throwing an error', () => {
+  it('deve retornar um nome vazio quando receber texto vazio', () => {
     const nome = '';
 
     const resultado = formatarNome(nome);
