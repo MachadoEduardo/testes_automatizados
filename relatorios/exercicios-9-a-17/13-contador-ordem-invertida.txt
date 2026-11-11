@@ -1,0 +1,32 @@
+npm.cmd test -- contador --runInBand
+
+
+> atividade-jest@1.0.0 test
+> jest contador --runInBand
+
+  console.log
+    valor ao final do teste: 0
+
+      at Object.<anonymous> (src/__tests__/contador.spec.ts:9:13)
+
+  console.log
+    valor ao final do teste: 3
+
+      at Object.<anonymous> (src/__tests__/contador.spec.ts:9:13)
+
+  console.log
+    valor ao final do teste: 1
+
+      at Object.<anonymous> (src/__tests__/contador.spec.ts:9:13)
+
+PASS src/__tests__/contador.spec.ts
+  Contador com beforeEach
+    √ deve retornar 0 quando iniciar um teste sem incrementos (21 ms)
+    √ deve retornar 3 quando incrementar três vezes (2 ms)
+    √ deve retornar 1 quando incrementar uma vez (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        1.595 s
+Ran all test suites matching /contador/i.
