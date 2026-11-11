@@ -1,0 +1,61 @@
+npm.cmd test -- --runInBand --randomize --seed=20261111 --showSeed --coverage
+
+
+> atividade-jest@1.0.0 test
+> jest --runInBand --randomize --seed=20261111 --showSeed --coverage
+
+PASS src/__tests__/sum.spec.ts
+PASS src/__tests__/usuarioService.spec.ts
+PASS src/__tests__/buscarDados.spec.ts
+PASS src/__tests__/divide.spec.ts
+PASS src/__tests__/filtrarPares.spec.ts
+PASS src/__tests__/criarUsuario.spec.ts
+PASS src/__tests__/montarOperacao.spec.ts
+PASS src/__tests__/formatador.spec.ts
+PASS src/__tests__/contador.spec.ts
+  ● Console
+
+    console.log
+      valor ao final do teste: 0
+
+      at Object.<anonymous> (src/__tests__/contador.spec.ts:9:13)
+
+    console.log
+      valor ao final do teste: 3
+
+      at Object.<anonymous> (src/__tests__/contador.spec.ts:9:13)
+
+    console.log
+      valor ao final do teste: 1
+
+      at Object.<anonymous> (src/__tests__/contador.spec.ts:9:13)
+
+PASS src/__tests__/api.spec.ts
+PASS src/__tests__/subtract.spec.ts
+PASS src/__tests__/mensagem.spec.ts
+PASS src/__tests__/emailService.spec.ts
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+-------------------|---------|----------|---------|---------|-------------------
+All files          |     100 |      100 |     100 |     100 |
+ app.ts            |     100 |      100 |     100 |     100 |
+ buscarDados.ts    |     100 |      100 |     100 |     100 |
+ contador.ts       |     100 |      100 |     100 |     100 |
+ criarUsuario.ts   |     100 |      100 |     100 |     100 |
+ divide.ts         |     100 |      100 |     100 |     100 |
+ emailService.ts   |     100 |      100 |     100 |     100 |
+ filtrarPares.ts   |     100 |      100 |     100 |     100 |
+ formatador.ts     |     100 |      100 |     100 |     100 |
+ mensagem.ts       |     100 |      100 |     100 |     100 |
+ montarOperacao.ts |     100 |      100 |     100 |     100 |
+ subtract.ts       |     100 |      100 |     100 |     100 |
+ sum.ts            |     100 |      100 |     100 |     100 |
+ usuarioService.ts |     100 |      100 |     100 |     100 |
+-------------------|---------|----------|---------|---------|-------------------
+
+Seed:        20261111
+Test Suites: 13 passed, 13 total
+Tests:       75 passed, 75 total
+Snapshots:   1 passed, 1 total
+Time:        5.517 s, estimated 15 s
+Ran all test suites.

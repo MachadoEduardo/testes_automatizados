@@ -1,0 +1,143 @@
+npm.cmd test -- --runInBand --verbose
+
+
+> atividade-jest@1.0.0 test
+> jest --runInBand --verbose
+
+PASS src/__tests__/sum.spec.ts
+  Função sum
+    √ deve retornar 5 quando somar 2 e 3 (2 ms)
+    √ deve retornar 0 quando somar -1 e 1
+    √ deve retornar 0 quando somar 0 e 0
+
+PASS src/__tests__/usuarioService.spec.ts
+  Serviço de usuários
+    √ deve consultar o repositório e retornar o usuário quando ele existir (2 ms)
+    √ deve consultar o id correto quando buscar um usuário
+    √ deve retornar null quando o repositório não encontrar o usuário
+    √ deve consultar o repositório uma vez quando buscar um usuário
+    √ deve retornar o usuário quando o repositório resolver a promessa (1 ms)
+
+PASS src/__tests__/buscarDados.spec.ts
+  Função buscarDados
+    √ deve resolver com o objeto completo quando buscar os dados (1 ms)
+    √ deve possuir a propriedade ok quando resolver a promessa (1 ms)
+    √ deve conter ok verdadeiro quando resolver a promessa (1 ms)
+    √ deve retornar uma promessa quando chamar a função
+    √ deve retornar o objeto esperado quando aguardar com await
+  Função buscarDadosComErro
+    √ deve rejeitar com a mensagem esperada quando a busca falhar (8 ms)
+    √ deve rejeitar com uma instância de Error quando a busca falhar
+    √ deve capturar o tipo e a mensagem quando usar try e catch (1 ms)
+
+PASS src/__tests__/divide.spec.ts
+  Função divide
+    √ deve retornar 5 quando dividir 10 por 2
+    √ deve lançar um erro quando dividir por zero (6 ms)
+    √ deve lançar a mensagem de divisão por zero quando o divisor for zero
+    √ deve incluir zero na mensagem quando comparar com uma expressão regular (1 ms)
+    √ deve lançar uma instância de Error quando dividir por zero
+    √ deve retornar -5 quando dividir -10 por 2
+    √ deve retornar 0 quando dividir 0 por 5
+    √ deve retornar 3.5 quando dividir 7 por 2
+    √ deve concluir sem erro quando dividir 10 por 5
+
+PASS src/__tests__/filtrarPares.spec.ts
+  Função filtrarPares
+    √ deve manter a ordem dos pares quando receber números misturados (1 ms)
+    √ deve retornar um array vazio quando receber somente ímpares
+    √ deve retornar um array vazio quando receber um array vazio (1 ms)
+    √ deve incluir zero e pares negativos quando estiverem no array
+    √ deve conter 12 quando receber os números 10, 11 e 12
+    √ deve ter quatro elementos quando receber quatro números pares
+    √ deve excluir 2 quando receber somente ímpares
+    √ deve comparar o conteúdo quando os arrays tiverem referências diferentes
+
+PASS src/__tests__/criarUsuario.spec.ts
+  Função criarUsuario
+    √ deve retornar o objeto completo quando receber nome e idade (4 ms)
+    √ deve possuir a propriedade nome quando criar o usuário
+    √ deve ter idade 30 quando receber essa idade (1 ms)
+    √ deve conter nome e idade quando comparar apenas esses campos
+    √ deve ter um nome não vazio quando receber Maria
+    √ deve gerar ids diferentes quando criar dois usuários (1 ms)
+
+PASS src/__tests__/montarOperacao.spec.ts
+  Função montarOperacao
+    √ deve identificar a subtração quando montar a operação (1 ms)
+    √ deve retornar os dados e o resultado quando receber 10 e 4
+    √ deve incluir o segundo número nos valores quando montar a operação (1 ms)
+    √ deve retornar um objeto verdadeiro quando montar a operação
+
+PASS src/__tests__/formatador.spec.ts
+  Função formatarNome
+    √ deve colocar a primeira letra em maiúscula quando receber maria (1 ms)
+    √ deve remover espaços das pontas quando receber um nome com espaços
+    √ deve manter somente a inicial maiúscula quando receber ANA
+    √ deve retornar um nome vazio quando receber texto vazio
+
+  console.log
+    valor ao final do teste: 0
+
+      at Object.<anonymous> (src/__tests__/contador.spec.ts:9:13)
+
+  console.log
+    valor ao final do teste: 3
+
+      at Object.<anonymous> (src/__tests__/contador.spec.ts:9:13)
+
+  console.log
+    valor ao final do teste: 1
+
+      at Object.<anonymous> (src/__tests__/contador.spec.ts:9:13)
+
+PASS src/__tests__/contador.spec.ts
+  Contador com beforeEach
+    √ deve retornar 0 quando iniciar um teste sem incrementos (18 ms)
+    √ deve retornar 3 quando incrementar três vezes (1 ms)
+    √ deve retornar 1 quando incrementar uma vez
+
+PASS src/__tests__/api.spec.ts
+  Rotas iniciais da API
+    √ deve retornar status 200 e corpo ok quando consultar GET /ping (17 ms)
+    √ deve retornar JSON quando consultar GET /ping (3 ms)
+    √ deve retornar status 404 quando consultar uma rota inexistente (4 ms)
+    √ deve retornar status 404 quando enviar POST /ping (5 ms)
+  GET /saudacao/:nome
+    √ deve retornar a saudação quando receber o nome Maria (3 ms)
+    √ deve preservar o espaço quando receber o nome Ana Paula (2 ms)
+  POST /soma
+    √ deve retornar 5 quando somar 2 e 3 (23 ms)
+    √ deve retornar -3 quando somar -5 e 2 (3 ms)
+    √ deve retornar erro 400 quando o campo b estiver ausente (3 ms)
+    √ deve retornar erro 400 quando o campo a não for um número (2 ms)
+    √ deve retornar erro 400 quando o campo a estiver ausente (2 ms)
+    √ deve retornar erro 400 quando o campo b não for um número (3 ms)
+    √ deve retornar erro 400 quando o corpo da requisição estiver ausente (2 ms)
+
+PASS src/__tests__/subtract.spec.ts
+  Função subtract
+    √ deve retornar 3 quando subtrair 2 de 5 (3 ms)
+    √ deve retornar 6 quando subtrair 4 de 10 (1 ms)
+    √ deve retornar um número negativo quando o segundo número for maior
+    √ deve manter o primeiro número quando subtrair zero
+    √ deve retornar -3 quando subtrair -2 de -5
+    √ deve retornar 3 quando subtrair 2.5 de 5.5
+
+PASS src/__tests__/mensagem.spec.ts
+  Função getMensagemBoasVindas
+    √ deve gerar a mensagem de boas-vindas quando receber o nome Maria (1 ms)
+
+PASS src/__tests__/emailService.spec.ts
+  Função enviarEmail
+    √ deve retornar sucesso quando chamar a API com o email e o assunto corretos
+    √ deve chamar a API uma vez quando enviar um email (1 ms)
+    √ deve usar o email correspondente quando enviar para dois usuários
+    √ deve propagar o erro quando a API rejeitar o envio (4 ms)
+    √ deve resolver com sucesso quando a API concluir o envio assíncrono (1 ms)
+
+Test Suites: 13 passed, 13 total
+Tests:       75 passed, 75 total
+Snapshots:   1 passed, 1 total
+Time:        5.124 s, estimated 15 s
+Ran all test suites.

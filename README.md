@@ -120,7 +120,7 @@ src/
 
 Os imports dos testes usam `../` para alcançar o arquivo de produção. `formatarNome` retira os espaços das pontas, coloca as letras em minúsculas e transforma a primeira em maiúscula. Foram testadas as entradas `maria`, ` joão `, `ANA` e texto vazio.
 
-O comando `npm test -- divide formatador --runInBand` aprovou as duas suítes deste exercício, com treze testes: [saída do exercício 5](relatorios/testes-estrutura.txt). A suíte completa tem sete arquivos de teste porque também inclui as atividades anteriores, a API e o serviço de usuários.
+O comando `npm test -- divide formatador --runInBand` aprovou as duas suítes deste exercício, com treze testes: [saída do exercício 5](relatorios/testes-estrutura.txt). Na conclusão dos exercícios 4 a 8, a suíte completa tinha sete arquivos de teste, incluindo as atividades anteriores, a API e o serviço de usuários.
 
 ### Comandos do dia a dia
 
@@ -193,7 +193,7 @@ Na medição final, todos os sete arquivos incluídos no relatório ficaram com 
 
 Em `formatador.ts`, o relatório inicial marca a linha 5 como não executada; o relatório final mostra essa linha coberta. Os relatórios HTML e seus arquivos de apoio foram gerados automaticamente pelo Jest.
 
-O comando da primeira medição foi `npm test -- --coverage --runInBand --coverageDirectory=relatorios/cobertura-antes`. O comando final foi `npm test -- --coverage --runInBand`. O diretório padrão foi configurado como `relatorios/cobertura-depois` para preservar a medição inicial.
+O comando da primeira medição foi `npm test -- --coverage --runInBand --coverageDirectory=relatorios/cobertura-antes`. O comando final foi `npm test -- --coverage --runInBand`. Nessa etapa, o diretório padrão foi configurado como `relatorios/cobertura-depois` para preservar a medição inicial.
 
 ### Piso de cobertura
 
@@ -209,6 +209,218 @@ O cálculo inclui os arquivos `.ts` de produção. Os testes e `server.ts` foram
 4. Excluir arquivos que apenas iniciam o programa, arquivos gerados e os próprios testes mantém o cálculo focado no código de produção que queremos verificar.
 5. Para este projeto, definiria o piso de 80% de instruções, funções e linhas e 70% de ramos, mantendo a análise dos cenários junto com a métrica. O objetivo é evitar lacunas relevantes sem criar testes apenas para aumentar números.
 
-## Resultado final
+## Resultado dos exercícios 4 a 8
 
 O comando `npm test -- --coverage --runInBand` aprovou as sete suítes e os 32 testes, com 100% de cobertura de instruções, ramos, funções e linhas nos arquivos incluídos no cálculo. A compilação TypeScript foi aprovada com `npm run build`.
+
+## Exercício 9: boas práticas de testes
+
+### Problemas do teste original
+
+| Problema | Consequência |
+|---|---|
+| Nome genérico `teste1` | A falha não identifica o comportamento esperado. |
+| Vários cenários no mesmo teste | Uma falha interrompe a execução das asserções seguintes daquele teste. |
+| Soma e subtração misturadas | O resultado não indica claramente qual função apresentou o problema. |
+| Ausência de agrupamento por função | O relatório fica mais difícil de interpretar. |
+
+As funções `sum` e `subtract`, já existentes no projeto, correspondem à soma e à subtração do exemplo. Cada uma tem seu próprio `describe`. Os três casos de soma foram escritos com `test.each`, usando os campos `a`, `b` e `esperado`. O título `deve retornar $esperado quando somar $a e $b` apresenta os valores na ordem correta no relatório. A subtração de 5 por 2 foi acrescentada à suíte de `subtract`.
+
+Os nomes dos testes do projeto foram padronizados como `deve [resultado] quando [condição]`. A preparação dos dados, a chamada da função e a asserção ficam separadas por linhas em branco, seguindo AAA.
+
+### Respostas
+
+1. O nome faz parte da qualidade do teste porque explica o comportamento e ajuda a localizar o problema pelo relatório, sem precisar abrir o código.
+2. Quando uma asserção falha, as seguintes no mesmo teste não são executadas. Outros testes continuam sendo avaliados.
+3. O `describe` reúne os casos de uma função e acrescenta contexto aos nomes dos testes.
+4. `test.each` é adequado quando vários conjuntos de dados verificam a mesma regra e usam a mesma preparação e asserção. Cada linha gera um caso independente.
+
+A refatoração aprovou nove casos entre soma e subtração: [execução do exercício 9](relatorios/exercicios-9-a-17/09-calculos.txt). Como verificação adicional, a soma foi alterada temporariamente para subtração. Dois dos três testes falharam, e a implementação correta foi restaurada: [falha proposital detectada](relatorios/exercicios-9-a-17/09-funcao-alterada-propositalmente.txt).
+
+## Exercício 10: projeto integrado
+
+O app mantém `GET /ping` e acrescenta `GET /saudacao/:nome` e `POST /soma`. O servidor continua separado em `server.ts`. A rota de soma usa `sum` e verifica se os dois campos são números antes de calcular.
+
+| Cenário pedido | Status verificado | Conteúdo verificado |
+|---|---|---|
+| `GET /saudacao/Maria` | 200 | `{ mensagem: 'Olá, Maria' }` |
+| `GET /saudacao/Ana%20Paula` | 200 | `{ mensagem: 'Olá, Ana Paula' }` |
+| `POST /soma` com `{ a: 2, b: 3 }` | 200 | `{ resultado: 5 }` |
+| `POST /soma` com `{ a: -5, b: 2 }` | 200 | `{ resultado: -3 }` |
+| `POST /soma` sem `b` | 400 | `{ erro: 'Os campos a e b devem ser números.' }` |
+| `POST /soma` com `{ a: 'x', b: 3 }` | 400 | `{ erro: 'Os campos a e b devem ser números.' }` |
+| `GET /rota-inexistente` | 404 | Texto `Cannot GET /rota-inexistente` na resposta padrão do Express. |
+
+O nome com espaço é codificado com `encodeURIComponent` na requisição. O teste de rota inexistente já fazia parte da suíte anterior e foi mantido. Também foram testados o campo `a` ausente, o campo `b` com texto e a ausência do corpo da requisição. Todas as requisições usam `await`, e cada cenário confere status e conteúdo.
+
+Os casos estão em `src/__tests__/api.spec.ts`. Os resultados das rotas constam na [execução da suíte completa](relatorios/exercicios-9-a-17/suite-completa.txt).
+
+## Exercício 11: arrays
+
+`filtrarPares` usa `filter` para manter os números divisíveis por dois, preservando a ordem original.
+
+| Entrada | Verificação | Matcher |
+|---|---|---|
+| `[1, 2, 3, 4, 5, 6]` | Resultado `[2, 4, 6]` | `toEqual` |
+| `[1, 3, 5]` | Resultado `[]` | `toEqual` |
+| `[]` | Resultado `[]` | `toEqual` |
+| `[-4, -3, 0, 7]` | Resultado `[-4, 0]` | `toEqual` |
+| `[10, 11, 12]` | Resultado contém 12 | `toContain` |
+| `[2, 4, 6, 8]` | Resultado tem quatro elementos | `toHaveLength` |
+| `[1, 3, 5]` | Resultado não contém 2 | `not.toContain` |
+
+O teste `expect(filtrarPares([1, 2, 3, 4])).toBe([2, 4])` foi executado e falhou. O Jest mostrou `Expected: [2, 4]` e `Received: serializes to the same string`: os arrays tinham o mesmo conteúdo, mas eram objetos diferentes na memória.
+
+`toBe` compara a identidade dos arrays. `toEqual` compara seus elementos. `toContain` verifica a presença de um valor simples, e `toHaveLength` verifica a quantidade de elementos.
+
+A [execução com o matcher incorreto](relatorios/exercicios-9-a-17/11-array-toBe.txt) registrou sete casos aprovados e um reprovado. Na versão final, o oitavo teste usa `toEqual` e também passa.
+
+## Exercício 12: objetos
+
+A primeira versão de `criarUsuario` devolvia somente `nome` e `idade`. Os cinco testes pediam a comparação completa com `toEqual`, a presença de `nome`, o valor de `idade`, a correspondência parcial com `toMatchObject` e um nome verdadeiro com `toBeTruthy`.
+
+Na evolução da função, foi acrescentado um `id` gerado por `randomUUID`, do módulo nativo `node:crypto`.
+
+| Etapa | Resultado |
+|---|---|
+| Objeto sem `id` | Cinco testes aprovados. |
+| Objeto com `id`, mantendo a expectativa completa antiga | Um teste reprovado e quatro aprovados. |
+| Expectativa completa atualizada e teste de ids diferentes | Seis testes aprovados na suíte final. |
+
+O teste com `toEqual({ nome: 'Maria', idade: 30 })` passou a falhar porque o objeto recebido contém a propriedade adicional `id`. O teste com `toMatchObject` continuou passando porque compara somente os campos especificados.
+
+`toEqual` é adequado quando todos os campos esperados fazem parte do contrato verificado. `toMatchObject` é adequado quando apenas parte do objeto interessa ao caso de teste. Na versão final, a comparação completa inclui `id: expect.any(String)`, e outro teste confirma que dois usuários recebem ids diferentes.
+
+Evidências: [objeto sem id](relatorios/exercicios-9-a-17/12-objeto-sem-id.txt) e [falha da comparação antiga após incluir id](relatorios/exercicios-9-a-17/12-objeto-com-id-toEqual-antigo.txt).
+
+## Exercício 13: beforeEach e afterEach
+
+Sem os ganchos, o primeiro teste incrementou o contador de zero para um. O segundo recebeu esse estado e incrementou de um para dois, embora esperasse um. A [execução sem limpeza](relatorios/exercicios-9-a-17/13-contador-sem-gancho.txt) registrou um teste aprovado e um reprovado, com `Expected: 1` e `Received: 2`.
+
+A correção chama `reiniciar` em `beforeEach`. O `afterEach` registra o valor final com `obterValor`. A suíte final verifica zero incrementos, um incremento e três incrementos.
+
+| Execução | Valores registrados pelo `afterEach` | Resultado |
+|---|---|---|
+| Ordem inicial dos testes corrigidos | 1, 3, 0 | Três aprovados. |
+| Blocos `it` invertidos no arquivo | 0, 3, 1 | Três aprovados. |
+| Ordem aleatória com seed 42 | 0, 1, 3 | Três aprovados. |
+
+Em cada caso, a ordem é `beforeEach`, corpo do teste e `afterEach`. As mensagens aparecem após a execução do respectivo teste.
+
+| Gancho | Momento de execução |
+|---|---|
+| `beforeAll` | Uma vez, antes dos testes do bloco. |
+| `beforeEach` | Antes de cada teste do bloco. |
+| `afterEach` | Depois de cada teste do bloco. |
+| `afterAll` | Uma vez, depois dos testes do bloco. |
+
+### Respostas
+
+1. O estado compartilhado é um problema quando um teste altera os dados que outro usa. Isso cria dependência da ordem de execução.
+2. `beforeAll` prepara algo uma única vez para o grupo. `beforeEach` prepara novamente antes de cada caso, permitindo começar com um estado limpo.
+3. Ao mudar a ordem, um teste dependente pode receber outro estado e falhar, mesmo sem mudança na função testada.
+4. Um arquivo temporário criado durante um teste pode ser removido no `afterEach`. Outros exemplos são limpar registros de teste do banco e restaurar funções substituídas.
+
+Evidências: [contador com ganchos](relatorios/exercicios-9-a-17/13-contador-com-ganchos.txt), [ordem invertida](relatorios/exercicios-9-a-17/13-contador-ordem-invertida.txt) e [ordem aleatória](relatorios/exercicios-9-a-17/13-contador-ordem-aleatoria.txt).
+
+## Exercício 14: promises
+
+A versão inicial de `buscarDados` retornava `Promise.resolve({ ok: true })`. O teste com `await expect(...).resolves.toEqual(...)` passou: [execução inicial](relatorios/exercicios-9-a-17/14-promessa-inicial.txt).
+
+### Experiência sem await
+
+A função foi alterada temporariamente para devolver `{ ok: false }`, e o teste foi executado sem `await`. Com Node 22.14.0 e Jest 29.7.0, a execução terminou com código 1 e `JestAssertionError`, mostrando a diferença entre `ok: true` e `ok: false`. Nesse caso, a rejeição da asserção não aguardada encerrou o processo; não ocorreu a aprovação incorreta descrita como possibilidade no enunciado.
+
+O experimento foi repetido com `expect.assertions(1)` e também terminou com código 1. Esse comando exige que exatamente uma asserção seja executada durante o teste. Ele não aguarda promessas e não substitui `await` ou o retorno da promessa ao Jest.
+
+Sem aguardar, o resultado depende do momento em que a operação assíncrona termina: uma verificação pode ocorrer depois do encerramento do teste ou provocar uma rejeição não tratada. A versão final aguarda as comparações assíncronas.
+
+Evidências: [sem await](relatorios/exercicios-9-a-17/14-sem-await.txt) e [sem await, com contagem de asserções](relatorios/exercicios-9-a-17/14-sem-await-com-assertions.txt).
+
+### Casos finais
+
+| Verificação | Matcher |
+|---|---|
+| Objeto completo `{ ok: true }` | `resolves.toEqual` |
+| Presença da propriedade `ok` | `resolves.toHaveProperty` |
+| Campo `ok` verdadeiro | `resolves.toMatchObject` |
+| Retorno é uma promessa | `toBeInstanceOf(Promise)` |
+
+## Exercício 15: async e await
+
+`buscarDados` foi adaptada para `async` e retorna `{ ok: true }`. A suíte mantém os casos do exercício 14 e acrescenta a comparação do objeto obtido com `const resultado = await buscarDados()`.
+
+`buscarDadosComErro` lança `Error('falha ao buscar dados')` dentro de uma função `async`, produzindo uma promessa rejeitada. Os testes verificam a mensagem com `rejects.toThrow`, o tipo com `rejects.toBeInstanceOf(Error)` e as duas informações usando `try` e `catch`.
+
+Na versão com `try/catch`, `expect.assertions(2)` exige a execução das duas asserções do `catch`. Se a função deixar de rejeitar, nenhuma delas será executada, e o teste falhará pela contagem. Sem essa verificação, o teste poderia terminar sem conferir nada. A forma com `rejects` já falha quando a promessa resolve em vez de rejeitar.
+
+Os exercícios 14 e 15 compartilham `src/buscarDados.ts` e `src/__tests__/buscarDados.spec.ts`, que tem oito testes aprovados na execução final.
+
+## Exercício 16: snapshot
+
+A primeira execução gravou a mensagem `Olá, Maria! Bem-vindo à nossa plataforma.` em `src/__tests__/__snapshots__/mensagem.spec.ts.snap`.
+
+Depois, a função foi alterada para incluir `Seja bem-vindo`. O teste falhou e o Jest apresentou a comparação:
+
+```text
+Snapshot: "Olá, Maria! Bem-vindo à nossa plataforma."
+Received: "Olá, Maria! Seja bem-vindo à nossa plataforma."
+```
+
+A diferença entre os valores gravados é:
+
+```diff
+- "Olá, Maria! Bem-vindo à nossa plataforma."
++ "Olá, Maria! Seja bem-vindo à nossa plataforma."
+```
+
+O [diff completo dos arquivos de snapshot](relatorios/exercicios-9-a-17/16-snapshot-diff-unificado.txt) registra a alteração na entrada exportada. A [saída da falha no Jest](relatorios/exercicios-9-a-17/16-snapshot-diff.txt) preserva o resultado da comparação com a versão anterior.
+
+A mudança de texto foi mantida, e `npm test -- mensagem --runInBand -u` atualizou o snapshot. A execução final compara a mensagem atual com essa referência atualizada e passa.
+
+### Respostas
+
+1. O snapshot compara a saída com uma referência salva em arquivo e mostra a diferença quando ela muda. Não verifica uma regra adicional que `toBe` seria incapaz de verificar: neste exemplo, um `toBe` com o texto completo também detectaria a mudança. A diferença é que o snapshot guarda e gerencia a referência fora do teste, o que é útil para saídas maiores e estáveis.
+2. O arquivo `.snap` precisa ser versionado com o teste para que todas as máquinas e revisões usem a mesma saída esperada.
+3. Usar `-u` sem revisar a mudança pode aceitar um defeito como novo comportamento correto, eliminando o alerta do teste.
+
+Snapshots são adequados para textos e estruturas estáveis. Valores aleatórios, datas e horários variáveis tornam a comparação instável. Regras de negócio devem ter resultados esperados explícitos nos testes.
+
+Evidências: [snapshot inicial](relatorios/exercicios-9-a-17/16-snapshot-inicial.txt), [referência atualizada](src/__tests__/__snapshots__/mensagem.spec.ts.snap) e [execução da atualização](relatorios/exercicios-9-a-17/16-snapshot-atualizado.txt).
+
+## Exercício 17: mock de função
+
+`criarEnviarEmail` recebe `apiEnviar` e devolve a função `enviarEmail`. A função repassa o email do usuário e o assunto `Bem-vindo!` à dependência. O retorno ou a rejeição da API é propagado ao chamador.
+
+| Cenário | Verificação |
+|---|---|
+| Envio bem-sucedido | `mockReturnValue(true)`, chamada registrada, email e assunto corretos e retorno verdadeiro. |
+| Chamada única | `toHaveBeenCalledTimes(1)`. |
+| Dois usuários | `toHaveBeenNthCalledWith` confere o destinatário e o assunto de cada chamada. |
+| Falha no envio | `mockRejectedValue` e `await expect(...).rejects.toThrow` verificam a propagação da falha. |
+| Sucesso assíncrono | `mockResolvedValue(true)` e `await` verificam o retorno resolvido. |
+
+Cada teste cria suas próprias funções simuladas. O `beforeEach` chama `jest.clearAllMocks()` para limpar o histórico de chamadas. Todos os envios são simulados.
+
+### Respostas
+
+1. Verificar o retorno confirma o resultado recebido por quem chamou a função. Verificar as chamadas confirma se a dependência foi acionada com os argumentos e a quantidade esperados.
+2. Receber `apiEnviar` como parâmetro permite substituir a dependência por um mock, sem precisar configurar ou acessar um serviço externo.
+3. O mock não garante que o serviço real aceita os dados, que a autenticação funciona ou que o envio é aceito pela API. Um teste de integração com esse serviço pode verificar a comunicação real.
+
+## Resultado final dos exercícios 9 a 17
+
+| Verificação | Resultado |
+|---|---|
+| Suítes | 13 aprovadas. |
+| Testes | 75 aprovados. |
+| Snapshots | Um aprovado. |
+| Instruções, ramos, funções e linhas | 100% de cobertura nos arquivos incluídos. |
+| Ordem aleatória da suíte completa | Aprovada com seed 20261111. |
+| Ordem aleatória do contador | Aprovada com seed 42 e ordem diferente da original. |
+| Compilação TypeScript | Aprovada com `npm run build`. |
+
+Todos os testes finais contêm asserções e usam nomes descritivos. As versões com falhas propositais foram corrigidas após o registro dos resultados. Os relatórios dos exercícios anteriores foram preservados; a cobertura atual é gerada em `relatorios/exercicios-9-a-17/cobertura`, conforme `jest.config.js`, mantendo o piso de 80% de instruções, funções e linhas e 70% de ramos.
+
+- [Saída da suíte completa](relatorios/exercicios-9-a-17/suite-completa.txt).
+- [Execução aleatória com cobertura](relatorios/exercicios-9-a-17/suite-aleatoria-e-cobertura.txt).
