@@ -1,0 +1,51 @@
+npm.cmd test -- buscarDados.spec --runInBand
+
+
+> atividade-jest@1.0.0 test
+> jest buscarDados.spec --runInBand
+
+C:\Users\05edu\Documents\LionsDev_Avancado\testes_automatizados\atividade-jest\node_modules\expect\build\index.js:174
+    const innerErr = new JestAssertionError();
+                     ^
+
+JestAssertionError: expect(received).resolves.toEqual(expected) // deep equality
+
+- Expected  - 1
++ Received  + 1
+
+  Object {
+-   "ok": true,
++   "ok": false,
+  }
+    at Object.toEqual (C:\Users\05edu\Documents\LionsDev_Avancado\testes_automatizados\atividade-jest\node_modules\expect\build\index.js:174:22)
+    at Object.<anonymous> (C:\Users\05edu\Documents\LionsDev_Avancado\testes_automatizados\atividade-jest\src\__tests__\buscarDados.spec.ts:8:35)
+    at Promise.then.completed (C:\Users\05edu\Documents\LionsDev_Avancado\testes_automatizados\atividade-jest\node_modules\jest-circus\build\utils.js:298:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (C:\Users\05edu\Documents\LionsDev_Avancado\testes_automatizados\atividade-jest\node_modules\jest-circus\build\utils.js:231:10)
+    at _callCircusTest (C:\Users\05edu\Documents\LionsDev_Avancado\testes_automatizados\atividade-jest\node_modules\jest-circus\build\run.js:316:40)
+    at _runTest (C:\Users\05edu\Documents\LionsDev_Avancado\testes_automatizados\atividade-jest\node_modules\jest-circus\build\run.js:252:3)
+    at _runTestsForDescribeBlock (C:\Users\05edu\Documents\LionsDev_Avancado\testes_automatizados\atividade-jest\node_modules\jest-circus\build\run.js:126:9)
+    at _runTestsForDescribeBlock (C:\Users\05edu\Documents\LionsDev_Avancado\testes_automatizados\atividade-jest\node_modules\jest-circus\build\run.js:121:9)
+    at run (C:\Users\05edu\Documents\LionsDev_Avancado\testes_automatizados\atividade-jest\node_modules\jest-circus\build\run.js:71:3)
+    at runAndTransformResultsToJestFormat (C:\Users\05edu\Documents\LionsDev_Avancado\testes_automatizados\atividade-jest\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)
+    at jestAdapter (C:\Users\05edu\Documents\LionsDev_Avancado\testes_automatizados\atividade-jest\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:79:19)
+    at runTestInternal (C:\Users\05edu\Documents\LionsDev_Avancado\testes_automatizados\atividade-jest\node_modules\jest-runner\build\runTest.js:367:16)
+    at runTest (C:\Users\05edu\Documents\LionsDev_Avancado\testes_automatizados\atividade-jest\node_modules\jest-runner\build\runTest.js:444:34) {
+  matcherResult: {
+    actual: { ok: false },
+    expected: { ok: true },
+    message: 'expect(received).resolves.toEqual(expected) // deep equality\n' +
+      '\n' +
+      '- Expected  - 1\n' +
+      '+ Received  + 1\n' +
+      '\n' +
+      '  Object {\n' +
+      '-   "ok": true,\n' +
+      '+   "ok": false,\n' +
+      '  }',
+    name: 'toEqual',
+    pass: false
+  }
+}
+
+Node.js v22.14.0

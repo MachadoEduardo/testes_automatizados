@@ -1,0 +1,15 @@
+npm.cmd test -- buscarDados.spec --runInBand
+
+
+> atividade-jest@1.0.0 test
+> jest buscarDados.spec --runInBand
+
+PASS src/__tests__/buscarDados.spec.ts
+  Função buscarDados
+    √ deve resolver com ok verdadeiro quando buscar os dados (4 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        4.31 s
+Ran all test suites matching /buscarDados.spec/i.
