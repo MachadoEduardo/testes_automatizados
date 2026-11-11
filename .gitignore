@@ -2,3 +2,5 @@ node_modules/
 .npm-cache/
 coverage/
 dist/
+/relatorios/exercicios-9-a-17/cobertura/
+/relatorios/exercicios-9-a-17/auxiliares/

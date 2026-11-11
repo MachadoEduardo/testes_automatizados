@@ -8,7 +8,7 @@ module.exports = {
     ...tsJestTransformCfg,
   },
   collectCoverageFrom: ['src/**/*.ts', '!src/**/*.spec.ts', '!src/server.ts'],
-  coverageDirectory: 'relatorios/cobertura-depois',
+  coverageDirectory: 'relatorios/exercicios-9-a-17/cobertura',
   coverageReporters: ['text', 'json-summary', 'lcov'],
   coverageThreshold: {
     global: {
