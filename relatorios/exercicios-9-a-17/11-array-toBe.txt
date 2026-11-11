@@ -1,0 +1,41 @@
+npm.cmd test -- filtrarPares --runInBand
+
+
+> atividade-jest@1.0.0 test
+> jest filtrarPares --runInBand
+
+FAIL src/__tests__/filtrarPares.spec.ts
+  Função filtrarPares
+    √ deve manter a ordem dos pares quando receber números misturados (4 ms)
+    √ deve retornar um array vazio quando receber somente ímpares
+    √ deve retornar um array vazio quando receber um array vazio (1 ms)
+    √ deve incluir zero e pares negativos quando estiverem no array
+    √ deve conter 12 quando receber os números 10, 11 e 12 (1 ms)
+    √ deve ter quatro elementos quando receber quatro números pares (1 ms)
+    √ não deve conter 2 quando receber somente ímpares
+    × demonstra a comparação incorreta de arrays com toBe (4 ms)
+
+  ● Função filtrarPares › demonstra a comparação incorreta de arrays com toBe
+
+    expect(received).toBe(expected) // Object.is equality
+
+    If it should pass with deep equality, replace "toBe" with "toStrictEqual"
+
+    Expected: [2, 4]
+    Received: serializes to the same string
+
+      63 |     const resultado = filtrarPares(numeros);
+      64 |
+    > 65 |     expect(resultado).toBe([2, 4]);
+         |                       ^
+      66 |   });
+      67 | });
+      68 |
+
+      at Object.<anonymous> (src/__tests__/filtrarPares.spec.ts:65:23)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 7 passed, 8 total
+Snapshots:   0 total
+Time:        4.352 s
+Ran all test suites matching /filtrarPares/i.
