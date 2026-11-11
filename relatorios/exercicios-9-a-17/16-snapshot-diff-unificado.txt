@@ -1,0 +1,13 @@
+git diff --no-index -- relatorios/exercicios-9-a-17/snapshot-antes.txt relatorios/exercicios-9-a-17/snapshot-depois.txt
+
+warning: in the working copy of 'relatorios/exercicios-9-a-17/snapshot-antes.txt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'relatorios/exercicios-9-a-17/snapshot-depois.txt', LF will be replaced by CRLF the next time Git touches it
+diff --git a/relatorios/exercicios-9-a-17/snapshot-antes.txt b/relatorios/exercicios-9-a-17/snapshot-depois.txt
+index 7985637..b1629a1 100644
+--- a/relatorios/exercicios-9-a-17/snapshot-antes.txt
++++ b/relatorios/exercicios-9-a-17/snapshot-depois.txt
+@@ -1,3 +1,3 @@
+ // Jest Snapshot v1, https://goo.gl/fbAQLP
+
+-exports[`Função getMensagemBoasVindas deve gerar a mensagem de boas-vindas quando receber o nome Maria 1`] = `"Olá, Maria! Bem-vindo à nossa plataforma."`;
++exports[`Função getMensagemBoasVindas deve gerar a mensagem de boas-vindas quando receber o nome Maria 1`] = `"Olá, Maria! Seja bem-vindo à nossa plataforma."`;

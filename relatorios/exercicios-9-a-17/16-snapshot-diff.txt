@@ -1,0 +1,38 @@
+npm.cmd test -- mensagem --runInBand
+
+
+> atividade-jest@1.0.0 test
+> jest mensagem --runInBand
+
+FAIL src/__tests__/mensagem.spec.ts
+  Função getMensagemBoasVindas
+    × deve gerar a mensagem de boas-vindas quando receber o nome Maria (3 ms)
+
+  ● Função getMensagemBoasVindas › deve gerar a mensagem de boas-vindas quando receber o nome Maria
+
+    expect(received).toMatchSnapshot()
+
+    Snapshot name: `Função getMensagemBoasVindas deve gerar a mensagem de boas-vindas quando receber o nome Maria 1`
+
+    Snapshot: "Olá, Maria! Bem-vindo à nossa plataforma."
+    Received: "Olá, Maria! Seja bem-vindo à nossa plataforma."
+
+       7 |     const resultado = getMensagemBoasVindas(nome);
+       8 |
+    >  9 |     expect(resultado).toMatchSnapshot();
+         |                       ^
+      10 |   });
+      11 | });
+      12 |
+
+      at Object.<anonymous> (src/__tests__/mensagem.spec.ts:9:23)
+
+ › 1 snapshot failed.
+Snapshot Summary
+ › 1 snapshot failed from 1 test suite. Inspect your code changes or run `npm test -- -u` to update them.
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   1 failed, 1 total
+Time:        1.613 s
+Ran all test suites matching /mensagem/i.

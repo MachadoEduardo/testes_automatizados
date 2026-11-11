@@ -1,0 +1,19 @@
+npm.cmd test -- mensagem --runInBand
+
+
+> atividade-jest@1.0.0 test
+> jest mensagem --runInBand
+
+PASS src/__tests__/mensagem.spec.ts
+  Função getMensagemBoasVindas
+    √ deve gerar a mensagem de boas-vindas quando receber o nome Maria (5 ms)
+
+ › 1 snapshot written.
+Snapshot Summary
+ › 1 snapshot written from 1 test suite.
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   1 written, 1 total
+Time:        4.307 s
+Ran all test suites matching /mensagem/i.
